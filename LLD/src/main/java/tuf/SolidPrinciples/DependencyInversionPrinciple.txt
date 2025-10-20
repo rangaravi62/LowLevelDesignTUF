@@ -111,5 +111,5 @@ class Main {
 }
 
 
-No changes required in RecommendationEngine class — just pass a new strategy. 
+No changes required in RecommendationEngine class — just pass a new strategy.
 That's the power of Dependency Inversion Principle used in designing the Recommendation Strategy.
