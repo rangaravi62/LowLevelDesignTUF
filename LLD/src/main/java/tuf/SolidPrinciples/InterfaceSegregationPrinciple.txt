@@ -1,0 +1,41 @@
+INTERFACE SEGREGATION PRINCIPLE (ISP) ->
+-------------------------------------------------
+
+It says: "Don't force a class to depend on methods it does not use."
+Clients should not be forced to depend on interfaces they do not use. Instead of one large interface,
+many smaller, specific interfaces are preferred
+
+
+Suppose you order an Uber. You're just a rider — you only care about booking rides, tracking the driver, and paying. You don't care about picking up passengers, verifying driver's licenses, or managing earnings — that's for drivers!
+But what if the app gave you one massive interface with everything — rider features and driver features? It would be confusing, right?
+
+That's exactly what ISP helps prevent in software.
+
+
+Bad Interface Design (Violates ISP):
+
+interface UberUser {
+    void bookRide();
+    void acceptRide();
+    void trackEarnings();
+    void ratePassenger();
+    void rateDriver();
+}
+
+
+
+Using such an interface would force riders to implement methods they don't need, like acceptRide() and trackEarnings()
+
+Good Interface Design (Follows ISP):
+
+interface RiderInterface { // Rider Specific Interface
+    void bookRide();
+    void rateDriver();
+}
+
+interface DriverInterface { // Driver Specific Interface
+    void acceptRide();
+    void trackEarnings();
+    void ratePassenger();
+}
+

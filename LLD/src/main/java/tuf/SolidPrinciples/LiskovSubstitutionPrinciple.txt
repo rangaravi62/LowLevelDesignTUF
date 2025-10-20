@@ -1,0 +1,33 @@
+LISKOV SUBSTITUTION PRINCIPLE ->
+-------------------------------------------------
+
+If S is a subtype of T, then objects of type T may be replaced with objects of type S without altering the correctness of the program.
+This means that any subclass should be substitutable for its parent class without breaking the functionality.
+
+
+Think of it like this :
+If you write code using a parent class (say Shape), and later swap in a child class
+(using the child class object in place of the parent class object) (like Circle),
+the code should still work without errors or unexpected behavior.
+
+If the subclass changes behavior in a way that breaks expectations, it violates LSP
+
+
+EX :
+
+Think of it like this :
+
+If you write code using a parent class (say Shape), and later swap in a child class
+(using the child class object in place of the parent class object) (like Circle),
+the code should still work without errors or unexpected behavior.
+
+If the subclass changes behavior in a way that breaks expectations, it violates LSP
+
+
+
+Key Principles to Follow :
+
+1. Avoid overriding methods in a way that changes behavior drastically.
+2. Prefer composition over inheritance when possible.
+3. Think in terms of interfaces and behavioral compatibility.
+4. Subclass should only extend, not restrict behavior.

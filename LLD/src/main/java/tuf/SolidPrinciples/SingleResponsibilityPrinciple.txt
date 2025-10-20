@@ -1,0 +1,34 @@
+SINGLE RESPONSIBILITY PRINCIPLE (SRP) ->
+-------------------------------------------------
+A class should have only one reason to change. In other words, a class should only have one job, one responsibility, and one purpose.
+
+
+Real-life Analogy :
+
+Imagine a chef who is responsible for cooking, cleaning, serving food and ordering groceries.
+If the chef is busy cleaning, they can't focus on cooking, and the quality of the food may suffer.
+
+Instead, different people should handle each task: one person cooks (chef), another cleans (cleaner),
+third serves (waiter) and another orders groceries (manager). This way, each person can focus on their specific responsibility,
+leading to better results overall.
+
+
+Advantages of SRP :
+
+1. Improved Maintainability: Changes in one part of the system won't affect other parts, making it easier to maintain and update.
+2. Enhanced Readability: Smaller, focused classes are easier to read and understand.
+3. Better Reusability: Classes with a single responsibility can be reused in different contexts without bringing unnecessary dependencies.
+4. Facilitates Testing: Smaller classes are easier to test, as they have fewer dependencies and responsibilities.
+5. Lower Risk in Changes: Since each class handles only one concern,
+   changes made to it are less likely to cause unintended side effects in other parts of the system.
+
+
+Common Mistakes :
+
+1. Mixing Database Logic with Business Logic:
+   Putting both data access (e.g., SQL, JDBC) and core business rules in the same class.
+   This makes it hard to change the database layer without affecting business logic.
+2. Coupling UI Code with Business Logic:
+   Embedding application logic directly in the UI layer. This makes it tedious to change the UI without affecting the underlying logic.
+
+
