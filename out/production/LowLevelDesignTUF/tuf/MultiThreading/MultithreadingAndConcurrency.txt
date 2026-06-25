@@ -1,0 +1,175 @@
+---------------------------------------------------------------
+Program, Process and Thread
+---------------------------------------------------------------
+
+Program ---> A program is a collection of instructions written in a programming language that is intended to perform a specific task or solve a particular problem.
+
+Ex : when we download chrome.exe from the internet, it is a program.
+
+
+Process ---> A process is an instance of a program that is being executed. When you run a program, it becomes a process.
+
+Ex : when we open chrome.exe, it becomes a process.
+
+Keypoints :
+
+Each process has its own address space.
+Runs independently from other processes.
+Can execute without interfering unless allowed (e.g., inter-process communication).
+Managed by the operating system, ensuring it gets the necessary resources.
+
+
+
+Thread --->
+A thread is the smallest unit of execution within a process.
+A process can contain multiple threads, which share the same resources but run independently.
+Each thread can perform a separate task within the same process.
+Threads allow for parallelism, where multiple tasks are executed simultaneously.
+
+
+Example: Within the chrome.exe process, there might be several threads running concurrently.
+For instance, one thread might be responsible for rendering the UI (user interface),
+another for managing network requests, and another for handling user inputs like clicks or key presses.
+
+
+Keypoints :
+Threads are referred to as "lightweight" processes.
+They share resources like memory and CPU time with other threads in the same process.
+Threads within the same process share memory, allowing them to communicate more easily than separate processes.
+
+
+
+---------------------------------------------------------
+Cores in CPU
+---------------------------------------------------------
+
+A core in a CPU (Central Processing Unit) is a physical processing unit capable of executing instructions.
+Modern CPUs often have multiple cores, allowing them to handle several tasks simultaneously.
+
+Each core can independently execute a thread, meaning more cores lead to the ability to run more threads concurrently, thus improving performance and speed.
+
+
+Real-life Analogy :
+CPU Cores are like workers in an office:
+1. Imagine a company with a group of workers (cores). Each worker can independently complete their tasks (execute threads).
+2. If the company has more workers, it can handle more tasks simultaneously, making the overall workflow faster.
+3. Similarly, a single-core CPU is like having only one worker handling all tasks one by one,
+while a multi-core CPU is like having several workers who can work on different tasks at the same time.
+
+---------------------------------------------------------
+Hyperthreading
+---------------------------------------------------------
+Hyperthreading is a technology that allows a single core to execute multiple threads simultaneously.
+
+Real-life Analogy: If a worker could perform two tasks at once, they would complete more work without needing additional workers.
+
+
+Intelligent Time Slicing --->
+1. In Hyperthreading, each logical core (created by the physical core) takes turns executing tasks.
+2. Time slicing refers to dividing the core’s time between multiple threads, ensuring both threads get execution time without wasting resources.
+3. This is done intelligently, so when one thread is waiting for data or performing a slower operation (like I/O),
+the other thread can continue executing, making better use of the core's resources.
+
+
+Resoruce Sharing --->
+1. Both threads running on a single physical core share resources like the cache, execution units, and memory bandwidth.
+
+
+Benefits of Hyperthreading --->
+1. Better resource utilization: Reduces idle time of cores by allowing two threads to run concurrently on the same core.
+2. Enhanced multitasking: Improves performance for applications designed to take advantage of it by keeping the core busy and minimizing wasted cycles.
+
+
+-------------------------------------------------------------
+Context Switching
+-------------------------------------------------------------
+
+context switching is a process where the cpu stops executing the current thread save it's state and starts executing another thread,
+so that the other thread can be resumed later
+
+Allows multiple threads or processes to run "concurrently" on a single core by switching between them rapidly.
+
+
+How does the context switching happens ? -->
+1. The cpu saves the current thread context
+2. loads the next thread context
+3. starts executing the next thread
+
+switching is managed by the thread scheduler
+
+Thread Scheduler --->
+1. The thread scheduler is the part of the operating system that manages context switching. It decides when a thread should be paused and another should be run.
+2. The scheduler ensures efficient utilization of CPU resources, balancing the workload and giving the CPU time to execute multiple tasks.
+3. It uses scheduling algorithms (like round-robin, priority-based scheduling, etc.) to determine which thread should run next, triggering a context switch as necessary.
+
+
+------------------------------------------------------------
+Multithreading
+------------------------------------------------------------
+
+Multithreading is a programming technique that allows a CPU to execute multiple threads concurrently,
+with each thread being the smallest unit of a process. It enables a program to perform more than one task at a time within the same process.
+
+each thread runs independently
+shares the same memory space
+
+
+Significance of Multithreading
+1. better performance
+2. non blocking
+3. resource sharing
+
+
+------------------------------------------------------------------
+Concurrency vs. Parallelism
+------------------------------------------------------------------
+
+                          Concurrency                                                                    Parallelism
+
+1.  It involves managing multiple tasks over time,                             1. It is the simultaneous execution of tasks,
+    but not necessarily at the same time.                                         usually across multiple cores or processors.
+
+2. It can run on a single core by switching between tasks rapidly.	           2. It requires multiple cores or processors for true simultaneous execution.
+
+3. In concurrency, tasks appear to run together,                               3. In parallelism, tasks run at the same time,
+    managed by efficient context switching.                                       with no context switching required.
+
+4. It focuses on how to manage and interleave multiple tasks.	               4. It focuses on executing tasks simultaneously to reduce completion time.
+
+
+-----------------------------------------------------------------
+Process vs Thread
+-----------------------------------------------------------------
+
+                              Process                                                                  Thread
+
+1. An independent program in execution,                                        1. A sub-unit or a lightweight part of a process,
+   with its own resources and execution context.                                  responsible for executing specific tasks within the process.
+
+2. Each process has its own dedicated memory space, isolated from others.	  2. Threads within the same process share memory,
+                                                                                 allowing for efficient communication.
+
+3. Processes are fully isolated from each other,                              3. Threads are not isolated; they can directly communicate
+   ensuring that one process cannot directly interfere with another.             and share data with other threads in the same process.
+
+4. Communication between processes (Inter-Process Communication or IPC)       4. Communication between threads is simple as they share the same memory space,
+   is more complex and requires mechanisms like sockets or shared files.         making data sharing efficient.
+
+5. A crash in one process generally does not affect others                    5. A crash in one thread can potentially affect other threads
+   because each process runs in its own isolated memory space.                   within the same process since they share the same resources.
+
+6. Example: A database instance like PostgreSQL,                              6. Example: Individual tabs in a Chrome browser,
+   where each instance runs as a separate process.                               where each tab is a thread within the browser process.
+
+
+
+
+
+
+
+
+
+
+
+
+

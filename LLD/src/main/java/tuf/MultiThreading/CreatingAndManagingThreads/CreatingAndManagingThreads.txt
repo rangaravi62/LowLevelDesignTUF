@@ -1,0 +1,62 @@
+---------------------------------------------------------------------
+Implementing Multithreading by Extending the Thread Class
+---------------------------------------------------------------------
+In Java, multithreading can be implemented using many different ways.
+One such way is by creating a subclass of the Thread class and overriding the run() method.
+Each thread will execute the run() method, allowing concurrent execution of tasks.
+
+
+start() method: This method is used to start a new thread of execution. It internally calls the run() method.
+
+join() method: This method makes the main thread wait for the thread to finish before proceeding.
+
+
+
+---> Demerit: No Return Type in the run() Method
+A limitation of the Thread class in Java is that the run() method cannot return a value (because it's void).
+This means that if you need to return a result, like an ETA string, you cannot directly do so from the run() method.
+
+This is a key drawback of using the Thread class for tasks that require returning values.
+
+
+
+
+--------------------------------------------------------------------------------
+Implementing Multithreading by Using the Runnable Interface
+--------------------------------------------------------------------------------
+
+
+Runnable Interface: The Runnable interface is a functional interface that contains a single method, run().
+By implementing this interface, we can define the task to be executed by a thread. The run() method contains the code that will be executed concurrently.
+
+run() Method: Unlike the Thread class, where we override run() directly, in this case,
+we provide the task's code by implementing the run() method of the Runnable interface.
+
+Thread Class: While Runnable defines the task, the actual thread of execution is created by passing the Runnable object to a Thread object.
+The Thread class is responsible for managing and executing the thread.
+
+start() Method: The start() method is used to begin the thread's execution. It internally calls the run() method.
+
+Demerit ---> No Return Type in the run() Method
+
+
+Fire and Forget ---> A Pattern in Multithreading
+Both the Runnable interface and the Thread class, as discussed, naturally follow the Fire and Forget pattern.
+
+In this pattern, tasks are initiated (fired), but the system doesn't wait for a result or confirmation of their completion.
+Instead, the tasks are executed independently in the background, and the caller doesn't need to know when or how they finish.
+
+
+-----------------------------------------------------------------------------------------
+Implementing Multithreading by Using the Callable Interface and Future
+-----------------------------------------------------------------------------------------
+
+Callable Interface ---> The Callable interface is similar to Runnable, but its call() method is designed to return a result, unlike run().
+It also allows for throwing exceptions, which is useful for more complex tasks.
+
+call() Method ---> The call() method in the Callable interface contains the code for the task and can return any value (unlike run() in Runnable).
+It also allows the task to throw checked exceptions.
+
+ExecutorService ---> While you can directly use Thread with Callable, it's recommended to use ExecutorService for better thread management.
+The ExecutorService provides a method called submit() to submit a Callable task and returns a Future object that can be used to retrieve the result later.
+

@@ -1,0 +1,60 @@
+LOW LEVEL DESIGN
+-------------------
+
+
+High-Level Design (HLD) -> is like the architect's blueprint — it says where the rooms will be, how big they are,
+and how they're internally connected.
+
+
+Low-Level Design (LLD)  -> is like deciding where the switches go, where the bed/other items will go in bedroom,
+what materials to use, etc.
+
+So LLD is all about the small, detailed planning you do before actually building the house (or writing code).
+
+
+DEFINITION ->
+
+LLD is where your code starts to take shape. It's a crucial phase in the software development lifecycle
+that focuses on the detailed design of individual components or modules of a system.
+
+It involves specifying the internal structure, algorithms,
+and data structures that will be used to implement the system's functionality.
+It also acts as a bridge between high-level design and actual coding
+
+
+CODING EXAMPLE ->
+
+A simple example of LLD would be a basic Login System for a website,
+where LLD would involve forming/designing different details components like: login(), signUp(), forgotPassword() along
+with their functionality.
+
+
+KEY CHARACTERISTICS OF LLD ->
+
+Granular and Code-Level :
+1. LLD dives deep into the fine details of how each component will function.
+2. It defines classes, functions, variables, and data structures.
+
+Implementation-Focused :
+1. LLD is directly linked to how the actual code will be written.
+2. It acts as a blueprint for developers, guiding the logic, flow, and structure of modules.
+
+Applies OOP Principles :
+1. LLD makes heavy use of Object-Oriented Programming (OOP) concepts like classes, inheritance, abstraction, encapsulation, and polymorphism.
+2. This helps build modular, reusable, and maintainable systems.
+3. For example, a base Notification class might have subclasses like EmailNotification and SMSNotification
+using inheritance and polymorphism.
+
+
+IMPORTANCE OF LOW LEVEL DESIGN ->
+Avoids Rework: Clearly defined logic and structure help catch design issues early, reducing costly changes during development.
+Improves Collaboration: Acts as a shared reference for teams, ensuring everyone understands component behavior and integration points.
+Promotes Scalability: Well-designed, modular components can handle growth and new features without major redesign.
+Encourages Best Practices: Enforces use of clean code, design patterns, and OOP principles, leading to maintainable and robust systems.
+
+
+
+
+
+
+

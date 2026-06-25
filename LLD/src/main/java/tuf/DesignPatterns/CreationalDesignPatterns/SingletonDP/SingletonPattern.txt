@@ -1,0 +1,36 @@
+SINGLETON PATTERN
+------------------------
+
+The Singleton Pattern ensures that a class has only one instance throughout the application life cycle and provides a global point of access to that instance.
+
+ex:
+
+Identifying the Need for a Singleton
+Imagine you're developing a logging service. You need a class that writes logs to a file. If every part of your application creates a new logger instance,
+the result might be:
+
+Overwritten logs
+Multiple file handles
+Synchronization issues
+
+Instead, if there's only one logger instance (a Singleton), all parts of the program write to the same log file in a controlled manner.
+
+
+--------------------------------------------------------
+Working of Singleton Pattern
+--------------------------------------------------------
+
+The Singleton Pattern typically involves the following steps:
+Private constructor: Prevents instantiation from outside the class.
+Static variable: Holds the single instance of the class.
+Public static method: Provides a global access point to get the instance.
+
+This ensures that no matter how many times you call the method to get an instance, it will always return the same object.
+Approaches to Implement Singleton Pattern:
+In the real world, while designing the product, there are two primary ways to implement the Singleton pattern:
+Eager Loading
+Lazy Loading
+
+Each with its own trade-offs in terms of performance, memory usage, and thread safety.
+
+

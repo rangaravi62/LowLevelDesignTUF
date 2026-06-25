@@ -1,0 +1,41 @@
+DRY — Don't Repeat Yourself ->
+-----------------------------------
+
+In simple terms, avoid duplication of logic or code.
+Repeating code makes the system hard to maintain and error-prone.
+If a change is required, you might forget to update all occurrences.
+
+
+Importance :
+Reduces redundancy
+Easier maintenance
+Single point of change
+
+Applying DRY in Practice:
+Identify repetitive code and replace it with a single, reusable code segment.
+Extract common functionality into methods or utility classes.
+Leverage libraries and frameworks when available.
+Refactor duplicate logic regularly across classes or layers
+
+
+KISS — Keep It Simple, Stupid ->
+---------------------------------------
+
+A design should be kept as simple as possible. complexity should be only introduced only when necessary.
+
+Importance :
+Easier debugging
+Improved readability
+Better maintainability
+Faster development
+
+
+YAGNI — You Aren't Gonna Need It  ->
+---------------------------------------------
+
+This principle states that "Always implement things when you actually need them, never when you just foresee that you need them."
+Ex : introducing crypto payment in the future if necessary, can part it for later.
+Importance :
+Reduced waste
+Simplified codebase
+Faster development
