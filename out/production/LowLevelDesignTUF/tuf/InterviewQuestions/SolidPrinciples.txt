@@ -1,0 +1,271 @@
+Single Responsibility Principle
+---------------------------------------------------
+
+It states that a class should have only one reason to change, in other words a class should have one job, one responsibility
+and one purpose. for example, user service class shouldn't contain database access, sending email or report generation etc,
+These responsibilities should be seperated into repository, notification service and report generation components,
+This makes the code easier to maintain, test and modify.
+
+UserService
+ ├── UserRepository
+ ├── PermissionValidator
+ ├── ReportGenerator
+ └── NotificationService
+
+
+-------------------------------------------------------------------
+Open/Closed Principle
+-------------------------------------------------------------------
+
+Software entities should be open for extension but closed for modification.
+This means that the behavior of a module can be extended without modifying its source code.
+
+
+for example
+
+this violates the ocp
+
+public class NotificationService {
+
+    public void send(String type, String message) {
+
+        if (type.equals("EMAIL")) {
+            System.out.println("Sending email: " + message);
+        } else if (type.equals("SMS")) {
+            System.out.println("Sending SMS: " + message);
+        } else if (type.equals("PUSH")) {
+            System.out.println("Sending push notification: " + message);
+        }
+    }
+}
+
+if we want to add a WHATSAPP we need to modify the code
+
+we can use this instead
+
+
+public interface NotificationService {
+    void send(String message);
+}
+
+public class EmailService implements NotificationService {
+    @Override
+    public void send(String message) {
+        System.out.println("Sending email: " + message);
+    }
+}
+
+public class PushService implements NotificationService {
+    @Override
+    public void send(String message) {
+        System.out.println("Sending Push: " + message);
+    }
+}
+
+public class SmsService implements NotificationService {
+    @Override
+    public void send(String message) {
+        System.out.println("Sending sms: " + message);
+    }
+}
+
+public class NotificationSender {
+
+    private final NotificationService notificationService;
+
+    public NotificationSender(NotificationService notificationService) {
+        this.notificationService = notificationService;
+    }
+
+    public void sendNotification(String message) {
+        notificationService.send(message);
+    }
+}
+
+inside main()
+
+NotificationService service = new EmailService();
+
+NotificationSender sender = new NotificationSender(service);
+
+sender.sendNotification("Hi, I'm Ravi");
+
+
+If we want to add Whatsapp in the future
+
+public class WhatsAppService implements NotificationService {
+
+    @Override
+    public void send(String message) {
+        System.out.println("Sending WhatsApp message: " + message);
+    }
+}
+
+we can add another service implementing the NotificationService,
+We can add new notification types without modifying NotificationSender -> OCP
+
+Dependency Inversion Principle ->
+NotificationSender depends on the abstraction:NotificationService
+It does not directly depend on: EmailService, SmsService, PushService
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+LISKOV SUBSTITUTION PRINCIPLE
+------------------------------------------------------------------------------------------------------------------------
+
+
+It states that any subclass should be substitutable for its parent class without breaking the functionality.
+subclass must follow the parent class contract
+
+For example, if a Bird class exposes a fly() method, making Penguin extend it and throw an
+unsupported-operation exception violates LSP. A better design is to separate flying behavior into a FlyingBird interface.
+
+Violation example:
+
+public class Bird {
+    public void fly() {
+        System.out.println("Bird is flying");
+    }
+}
+
+public class Sparrow extends Bird {
+
+}
+
+public class Penguin extends Bird {
+    @Override
+    public void fly() {
+        throw new UnsupportedOperationException("Penguins cannot fly");
+    }
+}
+
+Penguin cannot fly, here Penguin breaks the parent class contract and throws the exception
+
+Corrected Design ->
+
+public abstract class Bird {
+
+}
+
+public interface FlyingBird {
+    void fly();
+}
+
+
+public class Sparrow extends Bird implements FlyingBird {
+    @Override
+    public void fly() {
+        System.out.println("Sparrow is flying");
+    }
+}
+
+public class Penguin extends Bird {
+    public void swim() {
+        System.out.println("Penguin is swimming");
+    }
+}
+
+
+------------------------------------------------------------------------------------------------------------------------
+Interview Segregation Principle
+------------------------------------------------------------------------------------------------------------------------
+
+
+The Interface Segregation Principle states that clients should not be forced to depend on methods they do not use.
+Instead of creating one large interface with unrelated operations, we should create smaller, focused interfaces
+
+
+Bad Interface Design (Violates ISP):
+
+interface UberUser {
+    void bookRide();
+    void acceptRide();
+    void trackEarnings();
+    void ratePassenger();
+    void rateDriver();
+}
+
+
+
+Using such an interface would force riders to implement methods they don't need, like acceptRide() and trackEarnings()
+
+Good Interface Design (Follows ISP):
+
+interface RiderInterface { // Rider Specific Interface
+    void bookRide();
+    void rateDriver();
+}
+
+interface DriverInterface { // Driver Specific Interface
+    void acceptRide();
+    void trackEarnings();
+    void ratePassenger();
+}
+
+
+------------------------------------------------------------------------------------------------------------------------
+Dependency Injection Principle
+------------------------------------------------------------------------------------------------------------------------
+
+High-level modules should not depend on low-level modules.
+Both should depend on abstractions.
+Abstractions should not depend on details. Details should depend on abstractions.
+
+
+public class EmailService {
+    public void send(String message) {
+        System.out.println("Sending email: " + message);
+    }
+}
+
+public class OrderService {
+    private final EmailService emailService = new EmailService();
+    public void placeOrder() {
+        System.out.println("Order placed");
+        emailService.send("Order confirmed");
+    }
+}
+
+Here, OrderService directly creates and depends on EmailService.
+This causes tight coupling, If we later want SMS or WhatsApp, we must modify OrderService.
+
+Better Design ->
+
+public interface NotificationService {
+    void send(String message);
+}
+
+public class EmailService implements NotificationService {
+
+    @Override
+    public void send(String message) {
+        System.out.println("Sending email: " + message);
+    }
+}
+
+public class OrderService {
+
+    private final NotificationService notificationService;
+
+    public OrderService(NotificationService notificationService) {
+        this.notificationService = notificationService;
+    }
+
+    public void placeOrder() {
+        System.out.println("Order placed");
+        notificationService.send("Order confirmed");
+    }
+}
+
+in main method
+
+NotificationService notificationService = new EmailService();
+OrderService orderService = new OrderService(notificationService);
+orderService.placeOrder();
+
+Now OrderService depends on the abstraction NotificationService, not directly on EmailService.
+
+
+
+

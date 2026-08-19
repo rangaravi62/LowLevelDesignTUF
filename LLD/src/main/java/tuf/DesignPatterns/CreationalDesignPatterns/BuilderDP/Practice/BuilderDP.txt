@@ -1,0 +1,8 @@
+Builder Design Pattern
+---------------------------------------
+The Builder pattern is used to create complex objects step by step, especially when a class has many optional fields.
+It avoids constructors with too many parameters.
+
+Why do builder methods return this? ->
+this refers to the current builder object.
+Returning it allows method chaining

@@ -1,0 +1,44 @@
+Adapter Pattern
+----------------------------------
+
+
+The Adapter Pattern allows incompatible interfaces to work together
+It converts the interface of a class into another interface that a client expects.
+Acts as a translator between classes.
+
+It acts as a bridge between the Target interface (expected by the client) and the Adaptee (an existing class with a different interface).
+This structural wrapping enables integration and compatibility across diverse systems.
+
+
+
+Real-Life Analogy
+---------------------------
+Imagine traveling from India to Europe. Your mobile charger doesn't fit into European sockets.
+Instead of buying a new charger, you use a plug adapter. The adapter allows your charger (with its Indian plug)
+to fit the European socket, enabling charging without modifying either the socket or the charger.
+
+
+Problem It Solves
+-----------------------------------
+Interface incompatibility between classes.
+You need to integrate third-party or legacy code into a new system.
+Reusability of existing classes without modifying their source code.
+
+when to use
+---------------------
+You need to use an existing class, but its interface does not match the one your system expects.
+You're integrating third-party APIs or external services into your application.
+
+
+
+Client
+  |
+Target Interface
+  |
+Adapter
+  |
+Adaptee (Existing Class)
+
+
+
+

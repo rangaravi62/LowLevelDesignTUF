@@ -1,0 +1,44 @@
+Factory Design Pattern
+----------------------------------
+
+The Factory pattern centralizes object creation and returns the required implementation based on an input.
+
+steps to create ->
+1. create a common interface
+2. create the concrete implementations of it
+3. create the factory
+4. use the factory
+
+When to use Factory DP ->
+The client code needs to work with multiple types of objects.
+
+
+without factory in payment service
+
+public class PaymentService {
+
+    public void pay(String type, double amount) {
+
+        PaymentMethod paymentMethod;
+
+        if ("CARD".equals(type)) {
+            paymentMethod = new CardPayment();
+        } else if ("UPI".equals(type)) {
+            paymentMethod = new UpiPayment();
+        } else if ("NET_BANKING".equals(type)) {
+            paymentMethod = new NetBankingPayment();
+        } else {
+            throw new IllegalArgumentException("Unsupported payment type");
+        }
+
+        paymentMethod.pay(amount);
+    }
+}
+
+
+The problem is that PaymentService handles both:
+
+payment workflow
+object-creation logic
+
+Every new payment type forces us to modify PaymentService.
