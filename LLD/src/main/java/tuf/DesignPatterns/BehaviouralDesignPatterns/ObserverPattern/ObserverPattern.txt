@@ -1,0 +1,89 @@
+========================================
+Observer Design Pattern
+========================================
+
+Observer Pattern defines a one-to-many dependency between objects,
+where whenever the subject changes state or publishes an event, all registered observers are automatically notified.
+
+
+Suppose one object changes state, and multiple other objects need to know about that change.
+
+Instead of the main object directly calling every dependent object like:
+emailService.send();
+smsService.send();
+auditService.log();
+notificationService.notify();
+
+
+Whenever an order is successfully created, we want:
+
+Email notification
+SMS notification
+Audit logging
+
+Without Observer Pattern:
+
+public class OrderService {
+
+    private EmailService emailService;
+    private SmsService smsService;
+    private AuditService auditService;
+
+    public void createOrder() {
+
+        System.out.println("Order created");
+
+        emailService.sendEmail();
+        smsService.sendSms();
+        auditService.log();
+    }
+}
+
+The problem is that OrderService is tightly coupled to all these services.
+
+If tomorrow we add:
+WhatsAppNotification
+InventoryUpdate
+LoyaltyPoints
+Analytics
+
+we have to keep modifying OrderService.
+Observer Pattern solves this.
+
+
+steps to follow :
+
+1. create the Observer interface
+2. create Observers
+3. Publisher(Order Service)
+4. Register observers
+
+                OrderService
+                     |
+            order created ORD123
+                     |
+              notifyObservers()
+                     |
+       -----------------------------
+       |             |             |
+       v             v             v
+ EmailObserver   SmsObserver   AuditObserver
+       |             |             |
+     Email          SMS           Log
+
+
+
+                SUBJECT
+                   |
+             state changes
+                   |
+            notifyObservers
+                   |
+        ---------------------
+        |         |         |
+        v         v         v
+    Observer1 Observer2 Observer3
+
+
+Strategy → choose ONE behavior
+Observer → notify MANY listeners

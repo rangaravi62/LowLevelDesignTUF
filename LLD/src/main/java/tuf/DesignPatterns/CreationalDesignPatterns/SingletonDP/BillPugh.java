@@ -1,3 +1,5 @@
+package tuf.DesignPatterns.CreationalDesignPatterns.SingletonDP;
+
 public class BillPugh {
     private BillPugh() {
         // Private constructor to prevent external instantiation
